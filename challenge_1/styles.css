@@ -45,7 +45,7 @@ h1 {
   border: 1px solid rgba(255, 255, 255, .75);
 }
 
-.alert {
+.alertBox {
   visibility: hidden;
   margin-bottom: 2em;
   width: 250px;
@@ -56,8 +56,18 @@ h1 {
 }
 
 .playerMessage {
-  margin: 0 auto;
+  margin: auto;
   text-align: center;
   margin-bottom: .5em;
   font-size: 20px;
+}
+
+.score {
+  width: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-bottom: 1em;
 }
