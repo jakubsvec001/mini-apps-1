@@ -1,0 +1,63 @@
+body {
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  background-color: #a3cef2;
+  color: rgba(255, 255, 255, .75);
+  border-color: rgba(255, 255, 255, .75);
+}
+
+table {
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+td {
+  padding: 2em;
+  cursor: pointer;
+  border: 1px solid;
+  font-size: 1.6em;
+}
+
+
+h1 {
+  padding-top: 1em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-size: 60px;
+  color: rgba(255, 255, 255, .90);
+}
+
+.restartBtn {
+  width: 80px;
+  cursor: pointer;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  background-color: #a3cef2;
+  padding: 1em 2em;
+  border: 1px solid rgba(255, 255, 255, .00);
+}
+
+.restartBtn:hover {
+  color: rgba(255, 255, 255, 1);
+}
+.restartBtn:active {
+  border: 1px solid rgba(255, 255, 255, .75);
+}
+
+.alert {
+  visibility: hidden;
+  margin-bottom: 2em;
+  width: 250px;
+  margin: 0 auto;
+  padding: .5em 3em;
+  background-color: rgba(246, 77, 77, .60);
+  text-align: center;
+}
+
+.playerMessage {
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: .5em;
+  font-size: 20px;
+}
