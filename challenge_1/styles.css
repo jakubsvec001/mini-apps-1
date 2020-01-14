@@ -6,6 +6,33 @@ body {
   border-color: rgba(255, 255, 255, .75);
 }
 
+.board {
+  display: grid;
+  width: 399px;
+  margin: auto;
+  margin-bottom: 2em;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: stretch;
+}
+
+.tile {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 60px;
+  height: 70px;
+  width: 133px;
+  margin: auto;
+}
+
+.leftborder {
+  border-left: 2px solid rgba(255, 255, 255, .75);
+}
+
+.topborder {
+  border-top: 2px solid rgba(255, 255, 255, .75);
+}
+
 table {
   margin: auto;
   margin-bottom: 1em;
@@ -58,7 +85,7 @@ h1 {
 .playerMessage {
   margin: auto;
   text-align: center;
-  margin-bottom: .5em;
+  margin-bottom: 2em;
   font-size: 20px;
 }
 

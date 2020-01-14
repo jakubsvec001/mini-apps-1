@@ -1,14 +1,24 @@
 window.onload = function() {
+
   // VARIABLES
-  const EMPTY_SPACE = "__";
+  const EMPTY_SPACE = "";
+
+  const state = {
+    turn: 0,
+    player: 'Y',
+    Y_count: 0,
+    O_count: 0
+  }
 
   let turn = 0;
   let player;
   let Y_count = 0;
   let O_count = 0;
 
+  //==============================================
   //VIEW
-  // selectors
+  //==============================================
+
   const tile00 = document.querySelector(".tile00");
   const tile01 = document.querySelector(".tile01");
   const tile02 = document.querySelector(".tile02");
@@ -24,20 +34,9 @@ window.onload = function() {
   const oCounter = document.querySelector(".o-counter");
   const yCounter = document.querySelector(".y-counter");
 
-  const winningMessage = `${player} wins!`;
+  const winningMessage = `${state.player} wins!`;
   let winState = false;
 
-  const boardArray = [
-    tile00,
-    tile01,
-    tile02,
-    tile10,
-    tile11,
-    tile12,
-    tile20,
-    tile21,
-    tile22
-  ];
   const boardMatrix = [
     [tile00, tile01, tile02],
     [tile10, tile11, tile12],
@@ -45,6 +44,10 @@ window.onload = function() {
   ];
 
   restartBtn.addEventListener("click", restart);
+
+  //==============================================
+  // CONTROLLERS
+  //==============================================
 
   // GAME LOGIC
 
@@ -54,21 +57,20 @@ window.onload = function() {
       checkVertical(boardMatrix) ||
       checkDiagonals(boardMatrix)
     ) {
-      console.log("HORIZONTAL", player);
-      playerMessage.innerText = player + " WINS!";
+      playerMessage.innerText = state.player + " WINS!";
       winState = true;
     }
     if (winState) {
-      if (player === "Y") {
-        Y_count++;
+      if (state.player === "Y") {
+        state.Y_count++;
       } else {
-        O_count++;
+        state.O_count++;
       }
       updateCounter();
       unmountClickHandlers();
       setTimeout(restart, 2000);
     }
-    if (turn === 9) {
+    if (state.turn === 9) {
       unmountClickHandlers();
       alertFlag("stalemate! restarting game...");
       setTimeout(restart, 2000);
@@ -80,7 +82,7 @@ window.onload = function() {
     boardMatrix.forEach(row => {
       row.forEach(tile => tile.addEventListener("click", registerClick));
     });
-    turn = -1;
+    state.turn = -1;
     changePlayer();
     boardMatrix.forEach(row => {
       row.forEach(tile => {
@@ -89,11 +91,11 @@ window.onload = function() {
     });
   }
 
-  // BOARD LOGIC
+  // BOARD CLICK HANDLER
   function registerClick(e) {
     e.preventDefault();
     if (e.target.innerText === EMPTY_SPACE) {
-      e.target.innerText = player;
+      e.target.innerText = state.player;
       checkEndGame();
       if (!winState) {
         changePlayer();
@@ -104,11 +106,14 @@ window.onload = function() {
     }
   }
 
+  //==============================================
   // WIN CONDITIONS:
+  //==============================================
+
   function checkHorizontal(matrix) {
     let winningState = matrix.some(row => {
       return row.every(tile => {
-        return tile.innerText === player;
+        return tile.innerText === state.player;
       });
     });
     return winningState;
@@ -126,7 +131,7 @@ window.onload = function() {
   function checkMajor(matrix) {
     var run = [];
     for (let i = 0; i < matrix.length; i++) {
-      run.push(matrix[i][i].innerText === player);
+      run.push(matrix[i][i].innerText === state.player);
     }
     return run.every(item => item);
   }
@@ -138,7 +143,7 @@ window.onload = function() {
       i < matrix.length, j >= 0;
       i++, j--
     ) {
-      run.push(matrix[j][i].innerText === player);
+      run.push(matrix[j][i].innerText === state.player);
     }
     return run.every(item => item);
   }
@@ -151,23 +156,18 @@ window.onload = function() {
     });
   }
 
-  function alertFlag(message) {
-    alertBox.innerText = message.toUpperCase();
-    alertBox.style.visibility = "visible";
-    setTimeout(() => {
-      alertBox.style.visibility = "collapse";
-      alertBox.innerText = "";
-    }, 2000);
-  }
+  //==============================================
+  // HELPER LIB
+  //==============================================
 
   function changePlayer() {
-    turn++;
+    state.turn++;
     updatePlayer();
-    playerMessage.innerText = `READY PLAYER ${player}`;
+    playerMessage.innerText = `READY PLAYER ${state.player}`;
   }
 
   function updatePlayer() {
-    player = turn % 2 ? "O" : "Y";
+    state.player = state.turn % 2 ? "O" : "Y";
   }
 
   function unmountClickHandlers() {
@@ -177,9 +177,22 @@ window.onload = function() {
   }
 
   function updateCounter() {
-    yCounter.innerText = Y_count;
-    oCounter.innerText = O_count;
+    yCounter.innerText = state.Y_count;
+    oCounter.innerText = state.O_count;
   }
 
+  //==============================================
+  // USER MESSAGES
+  //==============================================
+  function alertFlag(message) {
+    alertBox.innerText = message.toUpperCase();
+    alertBox.style.visibility = "visible";
+    setTimeout(() => {
+      alertBox.style.visibility = "collapse";
+      alertBox.innerText = "";
+    }, 2000);
+  }
+
+  // START FIRST GAME
   restart();
 };

@@ -8,29 +8,25 @@
 <body>
   <h1>TIC TAC YO</h1>
   <div class='playerMessage'></div>
-  <table>
-    <tr class='row0'>
-      <td class='tile00'>__</td>
-      <td class='tile01'>__</td>
-      <td class='tile02'>__</td>
-    </tr>
-    <tr class='row1'>
-      <td class='tile10'>__</td>
-      <td class='tile11'>__</td>
-      <td class='tile12'>__</td>
-    </tr>
-    <tr class='row2'>
-      <td class='tile20'>__</td>
-      <td class='tile21'>__</td>
-      <td class='tile22'>__</td>
-    </tr>
-  </table>
-  <div class='alertBox'></div>
+  <div class='board'>
+    <div class='tile tile00'></div>
+    <div class='tile tile01 leftborder'></div>
+    <div class='tile tile02 leftborder'></div>
+    <div class='tile tile10 topborder'></div>
+    <div class='tile tile11 topborder leftborder'></div>
+    <div class='tile tile12 topborder leftborder'></div>
+    <div class='tile tile20 topborder'></div>
+    <div class='tile tile21 topborder leftborder'></div>
+    <div class='tile tile22 topborder leftborder'></div>
+  </div>
   <div class='score'>
     <div>Y WIN COUNT: <span class='y-counter'> 0 </span></div>
     <div>O WIN COUNT: <span class='o-counter'> 0 </span></div>
   </div>
-  <script type="text/javascript" src="./app.js"></script>
   <div class='restartBtn'>RESTART</div>
+  <div class='alertBox'></div>
+  <script type="text/javascript" src="./app.js"></script>
+  <script type="text/javascript" src="./tests.js"></script>
+
 </body>
 
