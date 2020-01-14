@@ -157,7 +157,7 @@ const convertJsonToCsv = (json, filter = null) => {
           const {column, value, operator} = filter
           // ...and if the filter returns true, break out of loop
           if (column === key){
-            filteredFlag = eval(`${node[key]} ${operator} ${value}`)
+            filteredFlag = !eval(`${node[key]} ${operator} ${value}`)
           }
           if (filteredFlag) {
             break;
@@ -188,5 +188,4 @@ module.exports = {
   convertJsonToCsv
 };
 
-console.log(convertJsonToCsv(sampleData))
-console.log(convertJsonToCsv(sampleData, {'column': 'sales', 'operator': '<', "value": 28}));
+console.log(convertJsonToCsv(sampleData, {'column': 'sales', 'operator': '>', "value": 28}));
