@@ -94,8 +94,56 @@ var sampleData = {
 ]
 }
 
-const convertJsonToCsv = (json, filterCb = null) => {
-  let csv = [["uuid", ...Object.keys(json).slice(0, -1)]];
+var sampleData = {
+  "firstName": "Joshie",
+  "lastName": "Wyattson",
+  "county": "San Mateo",
+  "city": "San Mateo",
+  "role": "",
+  "sales": 100,
+  "children": [
+  {
+    "firstName": "Beth Jr.",
+    "lastName": "Johnson",
+    "county": "San Mateo",
+    "city": "Pacifica",
+    "role": "",
+    "sales": 29,
+    "children": [
+      {
+        "firstName": "Smitty",
+        "lastName": "Won",
+        "county": "San Mateo",
+        "city": "Redwood City",
+        "role": "",
+        "sales": 48,
+        "children": []
+      },
+      {
+        "firstName": "Allen",
+        "lastName": "Price",
+        "county": "San Mateo",
+        "city": "Burlingame",
+        "role": "",
+        "sales": 25,
+        "children": []
+      }
+    ]
+  },
+  {
+    "firstName": "Beth",
+    "lastName": "Johnson",
+    "county": "San Francisco",
+    "city": "San Francisco",
+    "role": "",
+    "sales": 75,
+    "children": []
+  }
+]
+}
+
+const convertJsonToCsv = (json, filter = null) => {
+  let parsed = [["uuid", ...Object.keys(json).slice(0, -1)].join('\t')];
   let uuid = 0;
   const recurseJson = node => {
     let rowBuild = [uuid];
@@ -104,35 +152,36 @@ const convertJsonToCsv = (json, filterCb = null) => {
     let value;
     for (let key in node) {
       if (node[key] && key !== "children") {
-        // if a filterCb is provided...
-        console.log(node[key])
-        if (filterCb) {
-          column = key;
-          value = node[key];
+        // if a filter is provided...
+        if (filter && typeof filter === 'object' && !Array.isArray(filter)) {
+          const {column, value, operator} = filter
           // ...and if the filter returns true, break out of loop
-          if (filterCb(column, value)) {
-            filteredFlag = true;
+          if (column === key){
+            filteredFlag = eval(`${node[key]} ${operator} ${value}`)
+          }
+          if (filteredFlag) {
             break;
           }
         }
-        // if no filterCb, or if filterCb returns a false filter match, continue building row.
+        // if no filter, or if filter returns a false filter match, continue building row.
         rowBuild.push(node[key]);
       } else if (key !== "children") {
         // if the value is falsy, convert to null entry
         rowBuild.push(null);
       }
     }
-    // if filterCb and filterCb did not return true, continue recursion
+    // if filter and filter did not return true, continue recursion
     if (!filteredFlag) {
       uuid++;
-      csv.push(rowBuild);
+      parsed.push(rowBuild.join('\t'));
       node.children.forEach(child => {
         recurseJson(child);
       });
     }
   };
   recurseJson(json);
-  return csv;
+
+  return parsed.join('\n');
 };
 
 module.exports = {
@@ -140,8 +189,4 @@ module.exports = {
 };
 
 console.log(convertJsonToCsv(sampleData))
-console.log(
-  convertJsonToCsv(sampleData, (column, value) => {
-    return column === "sales" && value < 26;
-  })
-);
+console.log(convertJsonToCsv(sampleData, {'column': 'sales', 'operator': '<', "value": 28}));
