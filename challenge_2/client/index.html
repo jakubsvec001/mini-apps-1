@@ -1,2 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JSON to CSV</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="./styles.css" rel="stylesheet">
+</head>
 
+<body>
+  <header>CONVERT JSON TO CSV</header>
+  <div class="wrapper">
+    <div class='input'>
+      <label for="json-input"></label>
+      <textarea id="json-input" class="interface" placeholder='ENTER JSON STRING HERE'></textarea>
+      <div><a href="#" class="submitJSON btn">CONVERT TO CSV</a></div>
+    </div>
+    <div class='output'>
+      <label for="csv-output"></label>
+      <textarea id="csv-output" class='interface' placeholder='CSV OUTPUT'></textarea>
+      <div><a href="#" class="downloadCSV btn">DOWNLOAD CSV</a></div>
+    </div>
+  </div>
+  <script src="./app.js" type="text/javascript"></script>
+  <script src="./model.js" type="text/javascript"></script>
+  <script src="./controller.js" type="text/javascript"></script>
+</body>
+
+</html>

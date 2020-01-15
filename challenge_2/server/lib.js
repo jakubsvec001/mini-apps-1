@@ -142,7 +142,7 @@ var sampleData = {
 ]
 }
 
-const convertJsonToCsv = (json, filter = null) => {
+const convertJsonToCsv = (json, filter) => {
   let parsed = [["uuid", ...Object.keys(json).slice(0, -1)].join('\t')];
   let uuid = 0;
   const recurseJson = node => {
@@ -188,4 +188,4 @@ module.exports = {
   convertJsonToCsv
 };
 
-console.log(convertJsonToCsv(sampleData, {'column': 'sales', 'operator': '>', "value": 28}));
+// console.log(convertJsonToCsv(sampleData, {'column': 'sales', 'operator': '>', "value": 28}));
