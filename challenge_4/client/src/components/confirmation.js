@@ -4,7 +4,6 @@ export default function Confirmation(props) {
   return (
     <div>
       <h3>PLEASE CONFIRM YOUR INFORMATION: </h3>
-      <input type="submit" value="PURCHASE" />
       <h4>First Name:</h4>
       <p>{props.firstName}</p>
       <h4>Last Name:</h4>
@@ -33,8 +32,8 @@ export default function Confirmation(props) {
       <p>{props.cvvNumber}</p>
       <h4>Billing Zipcode:</h4>
       <p>{props.billZip}</p>
-      <button type="submit" onClick={props.handlePurchase}>
-        PURCHASE
+      <h3>PAY FOR NOTHING</h3>
+      <button type="submit" onClick={props.handlePurchase}>PURCHASE
       </button>
     </div>
   );
