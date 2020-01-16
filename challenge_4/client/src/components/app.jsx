@@ -97,16 +97,37 @@ class App extends Component {
 
   handlePurchase(e) {
     e.preventDefault();
-    postData('http://localhost:3000/api/purchase', {hello: 'there'})
-      .then(()=>{
-        console.log('data sent')
-        this.setState({
-          page: 'checkout'
-        })
-        this.resetState()
+    postData('http://localhost:3000/api/purchase', {
+      firstName: "abc",
+      lastName: "def",
+      email: "c",
+      password: "d",
+      line1: "e",
+      line2: "f",
+      city: "g",
+      state: "h",
+      zip: "i",
+      phone: "j",
+      ccNumber: "k",
+      expiration: "l",
+      cvvNumber: "m",
+      billZip: "BiLlZZIPPPP"
+    })
+      .then( response => {
+        if (response.ok){
+          console.log('data sent', response)
+          this.setState({
+            page: 'checkout'
+          })
+          this.resetState()
+        } else {
+          throw new Error('something went wront')
+        }
       })
       .catch(err => {
-        console.log(err)
+        if (err) {
+          console.log(err)
+        }
       })
   }
 
