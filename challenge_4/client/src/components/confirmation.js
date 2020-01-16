@@ -32,7 +32,8 @@ export default function Confirmation(props) {
       <p>{props.cvvNumber}</p>
       <h4>Billing Zipcode:</h4>
       <p>{props.billZip}</p>
-      <h3>PAY FOR NOTHING</h3>
+      <h1>YOUR TOTAL NOTHING: $10,421.00</h1>
+      <h3>PLEASE PAY FOR NOTHING</h3>
       <button type="submit" onClick={props.handlePurchase}>PURCHASE
       </button>
     </div>

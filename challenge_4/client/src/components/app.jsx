@@ -4,6 +4,7 @@ import Shipping from "./shipping";
 import Payment from "./payment";
 import Confirmation from "./confirmation";
 import Checkout from "./checkout";
+import postData from "../controller/postData"
 
 // F1 collects name, email, and password for account creation.
 // F2 collects ship to address (line 1, line 2, city, state, zip code) and phone number.
@@ -14,20 +15,20 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      line1: "",
-      line2: "",
-      city: "",
-      state: "",
-      zip: "",
-      phone: "",
-      ccNumber: "",
-      expiration: "",
-      cvvNumber: "",
-      billZip: "",
+      firstName: "a",
+      lastName: "b",
+      email: "c",
+      password: "d",
+      line1: "e",
+      line2: "f",
+      city: "g",
+      state: "h",
+      zip: "i",
+      phone: "j",
+      ccNumber: "k",
+      expiration: "l",
+      cvvNumber: "m",
+      billZip: "n",
       page: 'confirmation',
     };
     this.handleChange = this.handleChange.bind(this);
@@ -96,7 +97,17 @@ class App extends Component {
 
   handlePurchase(e) {
     e.preventDefault();
-    console.log('purchasing')
+    postData('http://localhost:3000/api/purchase', {hello: 'there'})
+      .then(()=>{
+        console.log('data sent')
+        this.setState({
+          page: 'checkout'
+        })
+        this.resetState()
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   render() {
