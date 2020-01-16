@@ -1,0 +1,31 @@
+INSERT INTO purchases (
+  firstName,
+  lastName,
+  email,
+  password,
+  lineOne,
+  lineTwo,
+  city,
+  state,
+  zip,
+  phone,
+  ccNumber,
+  expiration,
+  cvvNumber,
+  billZip
+) VALUES (
+  "Jake",
+  "Wija",
+  "email",
+  "password",
+  "line1",
+  "line2",
+  "city",
+  "state",
+  "zipcode",
+  "phone",
+  "credit card num",
+  "expiry",
+  "cvv here",
+  "billing zipcode"
+)
