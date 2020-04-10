@@ -21,18 +21,18 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Mongo Connection Error:'))
 
 
-const GamesModel = mongoose.model('GamesModel', gameScore)
+const GamesModel = mongoose.model('GamesModel')
 
-// const doc = new GamesModel()
+const doc = new GamesModel()
 
-// doc.players = ['jake', 'tantri']
-// doc.winner = 'tantri'
+doc.players = ['jake', 'tantri']
+doc.winner = 'tantri'
 
-// // console.log(doc)
+// console.log(doc)
 
-// doc.save()
+doc.save()
 
-// console.log('getting all')
+console.log('getting all')
 
 // GamesModel.find({}, (err, all) => {
 //   console.log(all)
